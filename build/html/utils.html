@@ -1,0 +1,700 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils package &mdash; NoisyGL 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NoisyGL
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">utils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-utils.dataloader">utils.dataloader module</a><ul>
+<li><a class="reference internal" href="#utils.dataloader.Dataset"><code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a><ul>
+<li><a class="reference internal" href="#utils.dataloader.Dataset.prepare_data"><code class="docutils literal notranslate"><span class="pre">Dataset.prepare_data()</span></code></a></li>
+<li><a class="reference internal" href="#utils.dataloader.Dataset.split_data"><code class="docutils literal notranslate"><span class="pre">Dataset.split_data()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#utils.dataloader.pyg_load_dataset"><code class="docutils literal notranslate"><span class="pre">pyg_load_dataset()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-utils.datasplit">utils.datasplit module</a><ul>
+<li><a class="reference internal" href="#utils.datasplit.get_split"><code class="docutils literal notranslate"><span class="pre">get_split()</span></code></a></li>
+<li><a class="reference internal" href="#utils.datasplit.k_fold"><code class="docutils literal notranslate"><span class="pre">k_fold()</span></code></a></li>
+<li><a class="reference internal" href="#utils.datasplit.sample_per_class"><code class="docutils literal notranslate"><span class="pre">sample_per_class()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-utils.functional">utils.functional module</a><ul>
+<li><a class="reference internal" href="#utils.functional.accuracy"><code class="docutils literal notranslate"><span class="pre">accuracy()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.apply_non_linearity"><code class="docutils literal notranslate"><span class="pre">apply_non_linearity()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.enn"><code class="docutils literal notranslate"><span class="pre">enn()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.knn"><code class="docutils literal notranslate"><span class="pre">knn()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.knn_fast"><code class="docutils literal notranslate"><span class="pre">knn_fast()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.normalize"><code class="docutils literal notranslate"><span class="pre">normalize()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.normalize_sp_matrix"><code class="docutils literal notranslate"><span class="pre">normalize_sp_matrix()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.normalize_sp_tensor_tractable"><code class="docutils literal notranslate"><span class="pre">normalize_sp_tensor_tractable()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.normalize_tensor"><code class="docutils literal notranslate"><span class="pre">normalize_tensor()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.row_nomalize"><code class="docutils literal notranslate"><span class="pre">row_nomalize()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.row_normalize_sp"><code class="docutils literal notranslate"><span class="pre">row_normalize_sp()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.symmetry"><code class="docutils literal notranslate"><span class="pre">symmetry()</span></code></a></li>
+<li><a class="reference internal" href="#utils.functional.to_undirected"><code class="docutils literal notranslate"><span class="pre">to_undirected()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-utils.labelnoise">utils.labelnoise module</a><ul>
+<li><a class="reference internal" href="#utils.labelnoise.add_instance_dependent_label_noise"><code class="docutils literal notranslate"><span class="pre">add_instance_dependent_label_noise()</span></code></a></li>
+<li><a class="reference internal" href="#utils.labelnoise.add_instance_independent_label_noise"><code class="docutils literal notranslate"><span class="pre">add_instance_independent_label_noise()</span></code></a></li>
+<li><a class="reference internal" href="#utils.labelnoise.label_dropout"><code class="docutils literal notranslate"><span class="pre">label_dropout()</span></code></a></li>
+<li><a class="reference internal" href="#utils.labelnoise.label_process"><code class="docutils literal notranslate"><span class="pre">label_process()</span></code></a></li>
+<li><a class="reference internal" href="#utils.labelnoise.pair_noise_cp"><code class="docutils literal notranslate"><span class="pre">pair_noise_cp()</span></code></a></li>
+<li><a class="reference internal" href="#utils.labelnoise.random_noise_cp"><code class="docutils literal notranslate"><span class="pre">random_noise_cp()</span></code></a></li>
+<li><a class="reference internal" href="#utils.labelnoise.uniform_noise_cp"><code class="docutils literal notranslate"><span class="pre">uniform_noise_cp()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-utils.logger">utils.logger module</a><ul>
+<li><a class="reference internal" href="#utils.logger.MultiExpRecorder"><code class="docutils literal notranslate"><span class="pre">MultiExpRecorder</span></code></a><ul>
+<li><a class="reference internal" href="#utils.logger.MultiExpRecorder.add_result"><code class="docutils literal notranslate"><span class="pre">MultiExpRecorder.add_result()</span></code></a></li>
+<li><a class="reference internal" href="#utils.logger.MultiExpRecorder.get_statistics"><code class="docutils literal notranslate"><span class="pre">MultiExpRecorder.get_statistics()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#utils.logger.ResultLogger"><code class="docutils literal notranslate"><span class="pre">ResultLogger</span></code></a><ul>
+<li><a class="reference internal" href="#utils.logger.ResultLogger.dump_record"><code class="docutils literal notranslate"><span class="pre">ResultLogger.dump_record()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#utils.logger.SingleExpRecorder"><code class="docutils literal notranslate"><span class="pre">SingleExpRecorder</span></code></a><ul>
+<li><a class="reference internal" href="#utils.logger.SingleExpRecorder.add"><code class="docutils literal notranslate"><span class="pre">SingleExpRecorder.add()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-utils.tools">utils.tools module</a><ul>
+<li><a class="reference internal" href="#utils.tools.get_edge_homophily"><code class="docutils literal notranslate"><span class="pre">get_edge_homophily()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.get_homophily"><code class="docutils literal notranslate"><span class="pre">get_homophily()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.get_neighbors"><code class="docutils literal notranslate"><span class="pre">get_neighbors()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.get_node_homophily"><code class="docutils literal notranslate"><span class="pre">get_node_homophily()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.get_npz_data"><code class="docutils literal notranslate"><span class="pre">get_npz_data()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.heatmap"><code class="docutils literal notranslate"><span class="pre">heatmap()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.largest_connected_components"><code class="docutils literal notranslate"><span class="pre">largest_connected_components()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.load_conf"><code class="docutils literal notranslate"><span class="pre">load_conf()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.load_npz"><code class="docutils literal notranslate"><span class="pre">load_npz()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.save_conf"><code class="docutils literal notranslate"><span class="pre">save_conf()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.setup_seed"><code class="docutils literal notranslate"><span class="pre">setup_seed()</span></code></a></li>
+<li><a class="reference internal" href="#utils.tools.sparse_mx_to_torch_sparse_tensor"><code class="docutils literal notranslate"><span class="pre">sparse_mx_to_torch_sparse_tensor()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NoisyGL</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">utils package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="utils-package">
+<h1>utils package<a class="headerlink" href="#utils-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-utils.dataloader">
+<span id="utils-dataloader-module"></span><h2>utils.dataloader module<a class="headerlink" href="#module-utils.dataloader" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.dataloader.Dataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.dataloader.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feat_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./data/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_percent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_self_loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'default'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_npz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cuda:0'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.dataloader.Dataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataset Class.
+This class loads, preprocesses and splits various datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>str</em>) – The name of dataset.</p></li>
+<li><p><strong>feat_norm</strong> (<em>bool</em>) – Whether to normalize the features.</p></li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – Whether to print statistics.</p></li>
+<li><p><strong>n_splits</strong> (<em>int</em>) – Number of data splits.</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – Path to save dataset files.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.dataloader.Dataset.prepare_data">
+<span class="sig-name descname"><span class="pre">prepare_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ds_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feat_norm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_npz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.dataloader.Dataset.prepare_data" title="Link to this definition"></a></dt>
+<dd><p>Function to Load various datasets.
+Homophilous datasets are loaded via pyg, while heterophilous datasets are loaded with <cite>hetero_load</cite>.
+The results are saved as <cite>self.feats, self.adj, self.labels, self.train_masks, self.val_masks, self.test_masks</cite>.
+Noth that <cite>self.adj</cite> is undirected and has no self loops.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ds_name</strong> (<em>str</em>) – The name of dataset.</p></li>
+<li><p><strong>feat_norm</strong> (<em>bool</em>) – Whether to normalize the features.</p></li>
+<li><p><strong>from_npz</strong> (<em>bool</em>) – Whether to load data from an existing npz file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.dataloader.Dataset.split_data">
+<span class="sig-name descname"><span class="pre">split_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.dataloader.Dataset.split_data" title="Link to this definition"></a></dt>
+<dd><p>Function to conduct data splitting for various datasets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>verbose</strong> (<em>bool</em>) – Whether to print statistics.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.dataloader.pyg_load_dataset">
+<span class="sig-prename descclassname"><span class="pre">utils.dataloader.</span></span><span class="sig-name descname"><span class="pre">pyg_load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'./data/'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.dataloader.pyg_load_dataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-utils.datasplit">
+<span id="utils-datasplit-module"></span><h2>utils.datasplit module<a class="headerlink" href="#module-utils.datasplit" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.datasplit.get_split">
+<span class="sig-prename descclassname"><span class="pre">utils.datasplit.</span></span><span class="sig-name descname"><span class="pre">get_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_examples_per_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.datasplit.get_split" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.datasplit.k_fold">
+<span class="sig-prename descclassname"><span class="pre">utils.datasplit.</span></span><span class="sig-name descname"><span class="pre">k_fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.datasplit.k_fold" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.datasplit.sample_per_class">
+<span class="sig-prename descclassname"><span class="pre">utils.datasplit.</span></span><span class="sig-name descname"><span class="pre">sample_per_class</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_examples_per_class</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forbidden_indices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.datasplit.sample_per_class" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-utils.functional">
+<span id="utils-functional-module"></span><h2>utils.functional module<a class="headerlink" href="#module-utils.functional" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.accuracy">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.accuracy" title="Link to this definition"></a></dt>
+<dd><p>Compute the accuracy score given true labels and predicted labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>np.array</em>) – Ground truth labels.</p></li>
+<li><p><strong>logits</strong> (<em>np.array</em>) – Predicted labels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>accuracy</strong> – The Accuracy score.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.apply_non_linearity">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">apply_non_linearity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_linearity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.apply_non_linearity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.enn">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">enn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.enn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.knn">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">knn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">K</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sparse_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.knn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.knn_fast">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">knn_fast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.knn_fast" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.normalize">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'symmetric'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.normalize" title="Link to this definition"></a></dt>
+<dd><p>Normalize the feature matrix or adj matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mx</strong> (<em>torch.tensor</em>) – Feature matrix or adj matrix to normalize. Note that either sparse or dense form is supported.</p></li>
+<li><p><strong>style</strong> (<em>str</em>) – If set as <code class="docutils literal notranslate"><span class="pre">row</span></code>, <cite>mx</cite> will be row-wise normalized.
+If set as <code class="docutils literal notranslate"><span class="pre">symmetric</span></code>, <cite>mx</cite> will be normalized as in GCN.
+If set as <code class="docutils literal notranslate"><span class="pre">softmax</span></code>, <cite>mx</cite> will be normalized using softmax.
+If set as <code class="docutils literal notranslate"><span class="pre">row-norm</span></code>, <cite>mx</cite> will be normalized using <cite>F.normalize</cite> in pytorch.</p></li>
+<li><p><strong>add_loop</strong> (<em>bool</em>) – Whether to add self loop.</p></li>
+<li><p><strong>p</strong> (<em>float</em>) – The exponent value in the norm formulation. Onlu used when style is set as <code class="docutils literal notranslate"><span class="pre">row-norm</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>normalized_mx</strong> – The normalized matrix.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.normalize_sp_matrix">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">normalize_sp_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.normalize_sp_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.normalize_sp_tensor_tractable">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">normalize_sp_tensor_tractable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.normalize_sp_tensor_tractable" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.normalize_tensor">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">normalize_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_loop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.normalize_tensor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.row_nomalize">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">row_nomalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.row_nomalize" title="Link to this definition"></a></dt>
+<dd><p>Row-normalize sparse matrix.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.row_normalize_sp">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">row_normalize_sp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.row_normalize_sp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.symmetry">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">symmetry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.symmetry" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.functional.to_undirected">
+<span class="sig-prename descclassname"><span class="pre">utils.functional.</span></span><span class="sig-name descname"><span class="pre">to_undirected</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.functional.to_undirected" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-utils.labelnoise">
+<span id="utils-labelnoise-module"></span><h2>utils.labelnoise module<a class="headerlink" href="#module-utils.labelnoise" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.add_instance_dependent_label_noise">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">add_instance_dependent_label_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm_std</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.add_instance_dependent_label_noise" title="Link to this definition"></a></dt>
+<dd><p>Add instance-dependent label noise to the labels.
+Implemented according to the following paper:
+Xia, Xiaobo, et al. “Part-dependent label noise: Towards instance-dependent label noise.” Advances in Neural Information Processing Systems 33 (2020): 7597-7610.
+paper link: <a class="reference external" href="https://proceedings.neurips.cc/paper_files/paper/2020/hash/5607fe8879e4fd269e88387e8cb30b7e-Abstract.html">https://proceedings.neurips.cc/paper_files/paper/2020/hash/5607fe8879e4fd269e88387e8cb30b7e-Abstract.html</a>
+code link: <a class="reference external" href="https://github.com/xiaoboxia/Part-dependent-label-noise">https://github.com/xiaoboxia/Part-dependent-label-noise</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>noise_rate</strong> (<em>int</em>) – The number of label classes</p></li>
+<li><p><strong>feature</strong> (<em>torch.Tensor</em>) – Node features</p></li>
+<li><p><strong>labels</strong> (<em>np.ndarray</em>) – Original labels</p></li>
+<li><p><strong>num_classes</strong> (<em>int</em>) – The number of label classes</p></li>
+<li><p><strong>norm_std</strong> (<em>float</em>) – Hyperparameter</p></li>
+<li><p><strong>seed</strong> (<em>int</em>) – Set random seed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>new_label</strong> – Processed noisy labels</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.add_instance_independent_label_noise">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">add_instance_independent_label_noise</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.add_instance_independent_label_noise" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.label_dropout">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">label_dropout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">masks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.label_dropout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.label_process">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">label_process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'uniform'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.label_process" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>np.ndarray</em>) – Original labels</p></li>
+<li><p><strong>features</strong> (<em>torch.Tensor</em>) – Node features</p></li>
+<li><p><strong>n_classes</strong> (<em>int</em>) – The number of label classes</p></li>
+<li><p><strong>noise_type</strong> (<em>string</em>) – Specify the type of label noise</p></li>
+<li><p><strong>noise_rate</strong> (<em>float</em>) – Specify label noise rate</p></li>
+<li><p><strong>random_seed</strong> (<em>int</em>) – Set random seed</p></li>
+<li><p><strong>debug</strong> (<em>bool</em>) – Debug mode</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>noisy_train_labels</strong> (<em>np.ndarray</em>) – Processed noisy labels</p></li>
+<li><p><strong>modified_mask</strong> (<em>np.ndarray</em>) – Mark modified labels</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.pair_noise_cp">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">pair_noise_cp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.pair_noise_cp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.random_noise_cp">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">random_noise_cp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.random_noise_cp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.labelnoise.uniform_noise_cp">
+<span class="sig-prename descclassname"><span class="pre">utils.labelnoise.</span></span><span class="sig-name descname"><span class="pre">uniform_noise_cp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.labelnoise.uniform_noise_cp" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-utils.logger">
+<span id="utils-logger-module"></span><h2>utils.logger module<a class="headerlink" href="#module-utils.logger" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.logger.MultiExpRecorder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.logger.</span></span><span class="sig-name descname"><span class="pre">MultiExpRecorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.MultiExpRecorder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Logger Class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>runs</strong> (<em>int</em>) – Total experimental runs.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.logger.MultiExpRecorder.add_result">
+<span class="sig-name descname"><span class="pre">add_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.MultiExpRecorder.add_result" title="Link to this definition"></a></dt>
+<dd><p>Add performance of a new run.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run</strong> (<em>int</em>) – Id of the new run.</p></li>
+<li><p><strong>result_dict</strong> (<em>dict</em>) – A dict containing training, valid and test performances.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.logger.MultiExpRecorder.get_statistics">
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.MultiExpRecorder.get_statistics" title="Link to this definition"></a></dt>
+<dd><p>Function to output the statistics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>None</strong> – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>The statistics of a given run or all runs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.logger.ResultLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.logger.</span></span><span class="sig-name descname"><span class="pre">ResultLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.ResultLogger" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.logger.ResultLogger.dump_record">
+<span class="sig-name descname"><span class="pre">dump_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noise_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_results</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.ResultLogger.dump_record" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="utils.logger.SingleExpRecorder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">utils.logger.</span></span><span class="sig-name descname"><span class="pre">SingleExpRecorder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.SingleExpRecorder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>SingleExpRecorder Class.</p>
+<p>This records the performances of epochs in a single run. It determines whether the training has improved based
+on the provided <cite>criterion</cite> and determines whether the earlystop <cite>patience</cite> has been achieved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>patience</strong> (<em>int</em>) – The maximum epochs to keep training since last improvement.</p></li>
+<li><p><strong>criterion</strong> (<em>str</em>) – The criterion to determine whether the training has improvement.
+- <code class="docutils literal notranslate"><span class="pre">None</span></code>: Improvement will be considered achieved in any case.
+- <code class="docutils literal notranslate"><span class="pre">loss</span></code>: Improvement will be considered achieved when loss decreases.
+- <code class="docutils literal notranslate"><span class="pre">metric</span></code>: Improvement will be considered achieved when metric increases.
+- <code class="docutils literal notranslate"><span class="pre">either</span></code>: Improvement will be considered achieved if either loss decreases or metric increases.
+- <code class="docutils literal notranslate"><span class="pre">both</span></code>: Improvement will be considered achieved if both loss decreases and metric increases.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="utils.logger.SingleExpRecorder.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loss_val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.logger.SingleExpRecorder.add" title="Link to this definition"></a></dt>
+<dd><p>Function to add the loss and metric of a new epoch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loss_val</strong> (<em>float</em>) – </p></li>
+<li><p><strong>metric_val</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>flag</strong> (<em>bool</em>) – Whether improvement has been achieved in the epoch.</p></li>
+<li><p><strong>flag_earlystop</strong> (<em>bool</em>) – Whether training needs earlystopping.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-utils.tools">
+<span id="utils-tools-module"></span><h2>utils.tools module<a class="headerlink" href="#module-utils.tools" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.get_edge_homophily">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">get_edge_homophily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.get_edge_homophily" title="Link to this definition"></a></dt>
+<dd><p>Calculate the node homophily of a graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>torch.tensor</em>) – The ground truth labels.</p></li>
+<li><p><strong>adj</strong> (<em>torch.tensor</em>) – The adjacency matrix in dense form.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>homophily</strong> – The edge homophily of the graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.get_homophily">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">get_homophily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'node'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.get_homophily" title="Link to this definition"></a></dt>
+<dd><p>Calculate node or edge homophily of a graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>torch.tensor</em>) – The ground truth labels.</p></li>
+<li><p><strong>adj</strong> (<em>torch.tensor</em>) – The adjacency matrix in dense form.</p></li>
+<li><p><strong>type</strong> (<em>str</em>) – This decides whether to calculate node homo or edge homo.</p></li>
+<li><p><strong>fill</strong> (<em>str</em>) – The value to fill in the diagonal of <cite>adj</cite>. If set to <cite>None</cite>, the operation won’t be done.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>homophily</strong> – The node or edge homophily of a graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.get_neighbors">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">get_neighbors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.get_neighbors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.get_node_homophily">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">get_node_homophily</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.get_node_homophily" title="Link to this definition"></a></dt>
+<dd><p>Calculate the node homophily of a graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<em>torch.tensor</em>) – The ground truth labels.</p></li>
+<li><p><strong>adj</strong> (<em>torch.tensor</em>) – The adjacency matrix in dense form.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>homophily</strong> – The node homophily of the graph.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.get_npz_data">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">get_npz_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_loop</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.get_npz_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.heatmap">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_classes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.heatmap" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.largest_connected_components">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">largest_connected_components</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_components</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.largest_connected_components" title="Link to this definition"></a></dt>
+<dd><p>Select k largest connected components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>adj</strong> (<em>scipy.sparse.csr_matrix</em>) – input adjacency matrix</p></li>
+<li><p><strong>n_components</strong> (<em>int</em>) – n largest connected components we want to select</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.load_conf">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">load_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.load_conf" title="Link to this definition"></a></dt>
+<dd><p>Function to load config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to load config file. Load default configuration if set to <cite>None</cite>.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Name of the used mathod. Necessary if <code class="docutils literal notranslate"><span class="pre">path</span></code> is set to <cite>None</cite>.</p></li>
+<li><p><strong>dataset</strong> (<em>str</em>) – Name of the corresponding dataset. Necessary if <code class="docutils literal notranslate"><span class="pre">path</span></code> is set to <cite>None</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>conf</strong> – The config file converted to Namespace.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>argparse.Namespace</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.load_npz">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">load_npz</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_sparse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.load_npz" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.save_conf">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">save_conf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">conf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.save_conf" title="Link to this definition"></a></dt>
+<dd><p>Function to load config file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to load config file. Load default configuration if set to <cite>None</cite>.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Name of the used mathod. Necessary if <code class="docutils literal notranslate"><span class="pre">path</span></code> is set to <cite>None</cite>.</p></li>
+<li><p><strong>dataset</strong> (<em>str</em>) – Name of the corresponding dataset. Necessary if <code class="docutils literal notranslate"><span class="pre">path</span></code> is set to <cite>None</cite>.</p></li>
+<li><p><strong>conf</strong> (<em>argparse.Namespace</em>) – The config file to save.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.setup_seed">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">setup_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.setup_seed" title="Link to this definition"></a></dt>
+<dd><p>Setup random seed so that the experimental results are reproducible
+:param seed: random seed for torch, numpy and random
+:type seed: int</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utils.tools.sparse_mx_to_torch_sparse_tensor">
+<span class="sig-prename descclassname"><span class="pre">utils.tools.</span></span><span class="sig-name descname"><span class="pre">sparse_mx_to_torch_sparse_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sparse_mx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utils.tools.sparse_mx_to_torch_sparse_tensor" title="Link to this definition"></a></dt>
+<dd><p>Convert a scipy sparse matrix to a torch sparse tensor.</p>
+</dd></dl>
+
+</section>
+<section id="module-utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-utils" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Zhonghao Wang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
